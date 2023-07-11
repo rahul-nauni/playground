@@ -1,2 +1,1 @@
-# playground
 LeetCode Programming Challenges
