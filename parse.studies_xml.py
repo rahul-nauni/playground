@@ -10,7 +10,7 @@ with open('studies.xml', 'r') as xml_file:
 data_dict = xmltodict.parse(xml_data)
 
 # Display the dictionary
-print(data_dict['bibdataset']['item'])
+#print(data_dict['bibdataset']['item'])
 # Extract the desired fields from the dictionary
 studies = data_dict['bibdataset']['item']
 
@@ -27,8 +27,8 @@ for study in studies:
     publication_date_moth = study['bibrecord']['head']['source']['publicationdate']['month']
     publication_date_day = study['bibrecord']['head']['source']['publicationdate']['day']
     publication_date_str = f'{publication_date_year}-{publication_date_moth}-{publication_date_day}'
-    publication_date = datetime.strptime(publication_date_str, '%Y-%m-%d').date()
-    title = study['bibrecord']['head']['citation-title']['titletext']
+    publication_date = datetime.strptime(publication_date_str, '%Y-%m-%d')
+    title = study['bibrecord']['head']['citation-title']['titletext']['#text']
     abstract = study['bibrecord']['head']['abstracts']['abstract']['ce:para']
     
     # Append the extracted fields to the respective lists
@@ -37,18 +37,18 @@ for study in studies:
     title_list.append(title)
     abstract_list.append(abstract)
 
-    print(f"DOI: {doi}")
+    """print(f"DOI: {doi}")
     print(f"Publication date: {publication_date}")
     print(f"Title: {title}")
-    print(f"Abstract: {abstract}")
-"""
+    print(f"Abstract: {abstract}")"""
+
 # Create a DataFrame from the extracted data
 df = pd.DataFrame({
     'doi': doi_list,
     'publication_date': pub_date_list,
+    'title': title_list,
     'abstract': abstract_list
 })
 
 # Display the DataFrame
 print(df)
-"""
