@@ -1,1 +1,1 @@
-LeetCode Programming Challenges
+**Collection of Programming Challenges**
