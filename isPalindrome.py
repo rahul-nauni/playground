@@ -1,8 +1,8 @@
 import re
 class Solution:
     def preprocess(self, s: str) -> str:
-        s = s.lower()
         s = re.sub('[\W_]+', '', s)
+        s = s.lower()
         return s
     
     def isPalindrome(self, s: str) -> bool:
